@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Sthéfhany 💖</title>
   <style>
-
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #ffe6f0;
       color: #4d004d;
       text-align: center;
+      overflow-x: hidden;
     }
 
     header {
@@ -22,26 +22,44 @@
 
     header h1 {
       font-size: 2.5em;
+      animation: fadeIn 2s ease-in-out;
     }
 
     .frase-especial {
       margin: 40px auto;
       font-size: 1.5em;
       padding: 0 20px;
+      animation: fadeIn 3s ease-in-out;
     }
 
     .galeria {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
       padding: 30px;
+    }
+
+    .foto-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .foto-container p {
+      margin-bottom: 10px;
+      font-style: italic;
     }
 
     .galeria img {
       width: 100%;
       height: auto;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(255,105,180,0.4);
+      transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
     }
 
     .botoes {
@@ -64,42 +82,40 @@
       background-color: #ff1493;
     }
 
+    .video-section {
+      margin: 50px 20px;
+    }
+
+    .video-section iframe,
+    .video-section video {
+      width: 90%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
     footer {
       margin-top: 40px;
       padding: 20px;
       background: #ffc0cb;
       font-size: 0.9em;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
-<script>
-    const hearts = () => {
-      const heart = document.createElement("div");
-      heart.innerText = "💖";
-      heart.style.position = "fixed";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.top = "-2em";
-      heart.style.fontSize = "24px";
-      heart.style.animation = "fall 3s linear infinite";
-      document.body.appendChild(heart);
-  
-      setTimeout(() => heart.remove(), 3000);
-    };
-  
-    setInterval(hearts, 300);
-  
-    const style = document.createElement("style");
-    style.innerHTML = `
-      @keyframes fall {
-        to {
-          transform: translateY(100vh);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
-  
 <body>
   <audio autoplay loop controls style="position: fixed; top: 10px; right: 10px; z-index: 10;">
     <source src="musica.mp3" type="audio/mpeg">
@@ -111,22 +127,23 @@
   </header>
 
   <section class="frase-especial">
-    <p><em>Oi meu amor, tudo bem? Estava eu aqui pensando em como te desejar parabéns e tive a ideia de criar um site para me declarar para você nesse dia tão especial. Primeiro de tudo, parabéns meu amor, feliz aniversário e que você aproveite ao máximo esse dia. Espero que você goste desse meu modo de desejar parabéns 💖😅. </em></p>
+    <p><em>Sua frase especial aqui...</em></p>
   </section>
 
   <section class="galeria">
-    <!-- Adicione suas imagens abaixo -->
-    <footer>
-         🥰
-      </footer>
-    <img src="foto1.jpg" alt="Foto 1">
-    <section class="frase-especial">
-        <p><em>Parabéns para essa mulher forte, batalhadora e que eu admiro demais. Você é perfeita aos meus olhos e cada dia que passa você me faz mais feliz ainda, que continue com essa alegria contagiante e esse sorriso lindo que eu amo </em></p>
-    </section>
-    Parabéns para essa mulher forte, batalhadora e que eu admiro demais. Você é perfeita aos meus olhos e cada dia que passa você me faz mais feliz ainda, que continue com essa alegria contagiante e esse sorriso lindo que eu amo 
-    <img src="foto2.jpg" alt="Foto 2">
-    <img src="foto3.jpg" alt="Foto 3">
-    <!-- ... -->
+    <!-- Adicione suas imagens abaixo com textos -->
+    <div class="foto-container">
+      <p>Nosso primeiro momento especial 💫</p>
+      <img src="foto1.jpg" alt="Foto 1">
+    </div>
+    <div class="foto-container">
+      <p>Um sorriso que ilumina meus dias 🌟</p>
+      <img src="foto2.jpg" alt="Foto 2">
+    </div>
+    <div class="foto-container">
+      <p>Mais um dia perfeito ao seu lado 💕</p>
+      <img src="foto3.jpg" alt="Foto 3">
+    </div>
   </section>
 
   <div class="botoes">
@@ -134,8 +151,33 @@
     <button onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">Ver mais</button>
   </div>
 
+  <section class="video-section">
+    <h2>🎥 Nosso vídeo especial</h2>
+    <!-- Opção de vídeo local -->
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Seu navegador não suporta vídeo.
+    </video>
+  </section>
+
   <footer>
     Feito com amor por Cristian 🥰
   </footer>
+
+  <!-- Corações caindo -->
+  <script>
+    const hearts = () => {
+      const heart = document.createElement("div");
+      heart.innerText = "💖";
+      heart.style.position = "fixed";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "-2em";
+      heart.style.fontSize = "24px";
+      heart.style.animation = "fall 3s linear infinite";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    };
+    setInterval(hearts, 300);
+  </script>
 </body>
 </html>
